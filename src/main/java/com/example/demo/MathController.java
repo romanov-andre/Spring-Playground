@@ -27,4 +27,16 @@ public class MathController {
     public int volume(@PathVariable int length, @PathVariable int width, @PathVariable int height) {
         return length * width * height;
     }
+
+    @PostMapping("/area")
+    public int getArea(@RequestParam String type, @RequestParam(required = false) int radius, @RequestParam int width, @RequestParam int height) {
+        switch(type) {
+            case "circle":
+                return (int)(Math.PI * Math.pow(radius, 2));
+            case "rectangle":
+                return width * height;
+            default:
+                return 0;
+        }
+    };
 }
