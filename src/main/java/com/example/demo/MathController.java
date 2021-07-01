@@ -1,13 +1,12 @@
 package com.example.demo;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/math")
 public class MathController {
 
-    @GetMapping("/math/calculate")
+    @GetMapping("/calculate")
     public int calculate(@RequestParam String operation, @RequestParam int x, @RequestParam int y) {
         switch (operation) {
             case "add":
@@ -22,5 +21,10 @@ public class MathController {
                 return 0;
         }
 
+    }
+
+    @RequestMapping("/volume/{length}/{width}/{height}")
+    public int volume(@PathVariable int length, @PathVariable int width, @PathVariable int height) {
+        return length * width * height;
     }
 }

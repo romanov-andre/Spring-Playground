@@ -8,6 +8,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -68,5 +69,16 @@ public class MathControllerTest {
 
     }
 
+    @Test
+    public void testVolume() throws Exception {
+        int length = 5;
+        int width = 3;
+        int height = 2;
+        RequestBuilder request = MockMvcRequestBuilders.get("/math/volume/" + length
+        + "/ " + width + "/ " + height);
+        mock.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(content().string(String.valueOf(length * width * height)));
+    }
 
 }
