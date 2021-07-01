@@ -20,7 +20,7 @@ public class EndpointsControllerTest {
     private MockMvc mock;
 
     @Test
-    public void findMathPI() throws Exception {
+    public void testMathPI() throws Exception {
         RequestBuilder request = MockMvcRequestBuilders.get("/math/pi");
         mock.perform(request)
                 .andExpect(status().isOk())
